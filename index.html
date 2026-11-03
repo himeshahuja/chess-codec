@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chess Codec</title>
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+  <header class="top">
+    <h1>Chess Codec</h1>
+    <div class="load">
+      <label class="btn" for="file">Image…</label>
+      <input id="file" type="file" accept="image/*" hidden />
+      <select id="size" title="Max side in pixels">
+        <option value="16">16 px</option>
+        <option value="24" selected>24 px</option>
+        <option value="32">32 px</option>
+        <option value="48">48 px</option>
+      </select>
+      <select id="mode" title="Colour mode">
+        <option value="0">RGB</option>
+        <option value="1">Gray</option>
+      </select>
+      <button id="encode" class="btn primary">Encode</button>
+      <span id="busy" class="busy"></span>
+    </div>
+  </header>
+
+  <main>
+    <section class="col board-col">
+      <div class="board-wrap">
+        <div id="board" class="board"></div>
+      </div>
+      <div class="controls">
+        <button id="first" title="Start">⏮</button>
+        <button id="prev" title="Back">◀</button>
+        <button id="play" class="play" title="Play / pause">▶</button>
+        <button id="next" title="Forward">▶︎</button>
+        <button id="last" title="End">⏭</button>
+        <select id="speed" title="Plies per second">
+          <option value="2">2/s</option>
+          <option value="10">10/s</option>
+          <option value="40" selected>40/s</option>
+          <option value="150">150/s</option>
+          <option value="600">600/s</option>
+        </select>
+      </div>
+      <input id="scrub" type="range" min="0" max="0" value="0" />
+      <div id="status" class="status"></div>
+    </section>
+
+    <section class="col image-col">
+      <div class="img-main">
+        <div class="cap">Decoded from game</div>
+        <canvas id="decoded" class="px"></canvas>
+      </div>
+      <div class="img-row">
+        <div><div class="cap">Original</div><canvas id="original" class="px"></canvas></div>
+        <div><div class="cap">Changed</div><canvas id="diff" class="px"></canvas></div>
+      </div>
+      <div id="stats" class="stats"></div>
+    </section>
+
+    <aside class="col side">
+      <div class="panel">
+        <div class="cap" id="alt-title">Moves here</div>
+        <div id="alts" class="alts"></div>
+      </div>
+      <div class="panel grow">
+        <div class="cap">
+          Game
+          <span class="spacer"></span>
+          <button id="reset" class="link">Revert edits</button>
+        </div>
+        <div id="moves" class="moves"></div>
+      </div>
+      <details class="panel">
+        <summary>Moves text / PGN</summary>
+        <textarea id="pgn" spellcheck="false"></textarea>
+        <div class="row">
+          <button id="apply" class="btn">Apply text</button>
+          <button id="copy" class="btn">Copy</button>
+          <button id="download" class="btn">Save .pgn</button>
+          <label class="btn" for="pgnfile">Open…</label>
+          <input id="pgnfile" type="file" accept=".pgn,.txt" hidden />
+        </div>
+      </details>
+    </aside>
+  </main>
+
+  <div id="toast" class="toast"></div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

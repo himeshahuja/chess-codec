@@ -1,0 +1,17 @@
+{
+  "name": "chess-codec",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "test": "node test/roundtrip.mjs"
+  },
+  "dependencies": {
+    "chess.js": "^1.4.0"
+  },
+  "devDependencies": {
+    "vite": "^7.0.0"
+  }
+}
